@@ -51,26 +51,5 @@ df_arica['dif']=df_arica['value'].diff()
 plt.plot(df_arica['fechas'], df_arica['dif'])
 plt.show()
 
-#b)Visualizar la evolución temporal del número de casos utilizando gráficos de línea.
-
+#por lo tanto se concluye que la evolucion del virus es de forma exponencial (nos dimos cuenta de esto ravisando los datos dentro de las fechas con diferencia negativa)
 # %%
-df_gg = df.groupby("fechas")["value"].sum().reset_index()
-df_gg["diff"] = df_gg["value"].diff().fillna(df_gg["value"])
-
-plt.plot(df_gg["fechas"], df_gg["diff"])
-plt.xlabel("Fecha")
-plt.ylabel("Casos nuevos")
-plt.title("Casos nuevos de COVID-19 por día")
-plt.show()
-
-# %%
-#para tdo
-df_grouped = df.groupby("fechas")["value"].sum().reset_index()
-df_grouped["new_cases"] = df["value"].diff()
-
-plt.plot(df_grouped["fechas"], df_grouped["new_cases"])
-plt.xlabel("Fecha")
-plt.ylabel("Casos nuevos")
-plt.title("Casos nuevos de COVID-19 por día")
-plt.show()
-#%%
