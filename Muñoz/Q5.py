@@ -1,4 +1,4 @@
-#pip install scipy
+ #pip install scipy
 
 import pandas as pd
 import matplotlib.pyplot as plt

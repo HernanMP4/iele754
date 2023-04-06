@@ -52,4 +52,4 @@ plt.plot(df_arica['fechas'], df_arica['dif'])
 plt.show()
 
 #por lo tanto se concluye que la evolucion del virus es de forma exponencial (nos dimos cuenta de esto ravisando los datos dentro de las fechas con diferencia negativa)
-# %%
+# %%                    
