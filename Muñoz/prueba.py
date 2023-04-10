@@ -1,5 +1,5 @@
 #%%
-import scipy.stats as stats#aqui estan las distribuicones: uniform, norm, binom, geom
+import scipy.stats as stats#aqui estan las distribuicones: uniform, norm, binom, geom, poisson
 ud=stats.uniform.rvs(size=100000,loc=0,scale=10)
 # %%
 import random

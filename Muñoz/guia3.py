@@ -1,8 +1,11 @@
+
+
 #%%
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats as stats
+import numpy as np
 #%%
 URL = 'https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto1/Covid-19.csv'
 
@@ -26,4 +29,23 @@ df_cases_month = df_cases_tidy[(df_cases_tidy['fecha'] >= fi) & (df_cases_tidy['
 df_case_sn = df_cases_month.dropna()
 #ordenando por valores de fechas el df
 df=df_case_sn.sort_values('fecha')
+#cambiamos a tipo str value (dice que es el error, vamos a probar)
+
 # %%
+plt.hist(df['value'], bins=100, density=True)
+
+[mean_fit, std_fit] = stats.norm.fit(df['value'])
+
+print(mean_fit)
+print(std_fit)
+
+x = np.linspace(np.min(df['value']), np.max(df['value']))
+
+plt.plot(x, stats.norm.pdf(x, mean_fit, std_fit),)
+
+plt.xlabel("Restaurant Quality")
+plt.ylabel("Probability Density")
+
+plt.show()
+# %%
+
