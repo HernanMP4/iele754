@@ -32,9 +32,9 @@ df=df_case_sn.sort_values('fecha')
 #cambiamos a tipo str value (dice que es el error, vamos a probar)
 
 # %%
-plt.hist(df['value'], bins=100, density=True)
+plt.hist(df['value'], bins=50, density=True)
 
-[mean_fit, std_fit] = stats.norm.fit(df['value'])
+[mean_fit, std_fit] = stats.poisson.fit(df['value'])
 
 print(mean_fit)
 print(std_fit)
@@ -42,9 +42,6 @@ print(std_fit)
 x = np.linspace(np.min(df['value']), np.max(df['value']))
 
 plt.plot(x, stats.norm.pdf(x, mean_fit, std_fit),)
-
-plt.xlabel("Restaurant Quality")
-plt.ylabel("Probability Density")
 
 plt.show()
 # %%
