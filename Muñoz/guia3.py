@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats as stats
 import numpy as np
-import powerlaw as pl
+import powerlaw
 
 
 #%%
@@ -72,3 +72,22 @@ plt.plot(x, stats.norm.pdf(x, mean_fit, std_fit),)
 plt.show()
 # %%
 
+# Trazar histograma de los datos
+plt.hist(df_grouped['new_cases'], bins=50, density=True)
+
+# Ajustar una curva de densidad de probabilidad a la distribución
+fit = powerlaw.Fit(df_grouped['new_cases'])
+
+# Imprimir los parámetros ajustados de la distribución powerlaw
+print("alpha = ", fit.alpha)
+print("xmin = ", fit.xmin)
+
+# Trazar la curva de densidad de probabilidad ajustada en la parte superior del histograma
+x = np.linspace(np.min(df_grouped['new_cases']), np.max(df_grouped['new_cases']), 100)
+y = fit.pdf(x)
+plt.plot(x, y, 'r--', linewidth=2)
+
+# Mostrar el gráfico
+plt.show()
+
+# %%
