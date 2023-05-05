@@ -5,8 +5,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt 
 from scipy.stats import bernoulli,norm
 #%%
-        
-#Perro se come la tarea random
 #aka missing completly at random
 N = 100 #Estos 3 usan el signo "<-" en vez del "=
 S = norm(0,1).rvs(size=N)
@@ -15,7 +13,6 @@ sns.scatterplot(data=S)
 sns.scatterplot(data=H)
 #%%
 
-#El perro se come el 50% de la tarea at random
 D = np.random.binomial(n=1, p=0.85, size=N) #D = rbern(N,8.5)
 Hstar = H.copy()
 Hstar[D==1] = np.nan

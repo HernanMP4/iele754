@@ -48,10 +48,6 @@ sns.lineplot(x='fecha',y='new_cases',data=df_grouped)
 #%%
 fit = powerlaw.fit(df_grouped['new_cases'])
 exponent = fit[0]
-# %%
-
-
-
 
 #%%
 # Trazar histograma de los datos
