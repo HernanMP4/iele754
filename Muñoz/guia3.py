@@ -34,38 +34,22 @@ df_grouped= df_cases_month.groupby(df_cases_month['fecha'])['value'].sum().reset
 df_grouped["new_cases"] = df_grouped["value"].diff().fillna(df_grouped["value"])
 
 #%%
-print(df_grouped['new_cases'].describe())
-
-#para visualizar 
-plt.hist(df_grouped['value'], bins=20)
-plt.xlabel('Valores de mi_columna')
-plt.ylabel('Frecuencia')
-plt.show()
+print(df_grouped['value'].describe())
 
 #%%
-sns.lineplot(x='fecha',y='new_cases',data=df_grouped)
-
-#%%
-fit = powerlaw.fit(df_grouped['new_cases'])
-exponent = fit[0]
-
+params = powerlaw.fit(df_grouped['value'])
+print(params)
+fig, ax = plt.subplots()
+ax.plot(params, color='red')
+#ax.scatter(df_grouped['fecha'], df_grouped['value'], label='Datos')
 #%%
 # Trazar histograma de los datos
-plt.hist(df_grouped['new_cases'], bins=50, density=True)
-
-# Ajustar una curva de densidad de probabilidad a la distribución
-fit = powerlaw.Fit(df_grouped['new_cases'])
-
-# Imprimir los parámetros ajustados de la distribución powerlaw
-print("alpha = ", fit.alpha)
-print("xmin = ", fit.xmin)
-
-# Trazar la curva de densidad de probabilidad ajustada en la parte superior del histograma
-x = np.linspace(np.min(df_grouped['new_cases']), np.max(df_grouped['new_cases']), 100)
-y = fit.pdf(x)
-plt.plot(x, y, 'r--', linewidth=2)
-
-# Mostrar el gráfico
+plt.scatter(df_grouped['fecha'], df_grouped['value'], label='Datos')
+#plt.hist(df_grouped['fecha'], powerlaw.pdf(df_grouped['value'], *params), label='Ajuste')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
 plt.show()
 
 # %%
+##############OTRA FORMA
