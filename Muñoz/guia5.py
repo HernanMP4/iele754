@@ -47,7 +47,7 @@ valor_medio=df_tidy['Total'].mean()
 plt.hist(df_tidy['Total'])
 plt.show()
 # %%
-df_tidy['Región Metropolitana de Santiago '] = df_tidy['Región Metropolitana de Santiago '].astype(float)
+df_tidy['Total '] = df_tidy['Total'].astype(float)
 #%%
 ##calculamos correlacion entre 2 columnas
 correlacion= df_tidy['Total'].corr(df_tidy['Región Metropolitana de Santiago '])
@@ -60,4 +60,15 @@ descomposicion = seasonal_decompose(df_tidy['Total'],
                                     model='additive', period=1)
 descomposicion.plot()
 plt.show()
+# %%
+#crear modelo ARIMA
+df_tidy['Total'] = df_tidy['Total'].astype(float)  # Convertir la columna a tipo float
+
+# Ajustar el modelo ARIMA
+modelo = ARIMA(df_tidy['Total'], order=(5, 1, 0))
+modelo_ajustado = modelo.fit()
+# %%
+prediccion = modelo_ajustado.forecast(steps=10)
+
+print(prediccion)
 # %%
